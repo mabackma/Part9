@@ -1,4 +1,4 @@
-import calculateBmi from './bmiCalculator'
+import calculateBmi from './bmiCalculator';
 import express from 'express';
 const app = express();
 
@@ -7,7 +7,8 @@ app.get('/hello', (_req, res) => {
 });
 
 app.get('/bmi', (req, res) => {
-  const { height, weight } = req.query;
+  const height: string = req.query.height as string;
+  const weight: string = req.query.weight as string;
 
   if (!height || !weight) {
     res.status(400).json({ error: 'parameters missing' });
