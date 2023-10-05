@@ -15,10 +15,10 @@ interface ExerciseValues {
 
 const calculateExercises = (hours: number[], target: number): Results => {
   const descriptions: { [key: number]: string } = {
-    1: 'you have a lot of work to do',
+    1: 'bad',
     2: 'not too bad but could be better',
     3: 'great job!'
-  }
+  };
 
   const trainingDays = hours.filter(h => h > 0).length;
   let rating: number = 1;
@@ -42,13 +42,13 @@ const calculateExercises = (hours: number[], target: number): Results => {
     ratingDescription: descriptions[rating],
     target: target,
     average: average
-  }
-}
+  };
+};
 
 const parseExerciseArguments = (args: string[]): ExerciseValues => {
   if (args.length < 4) throw new Error('Not enough arguments');
 
-  let hours = []
+  const hours = [];
   for (const element of args.slice(3)) {
     if (!isNaN(Number(element))) {
       hours.push(Number(element));
@@ -60,14 +60,14 @@ const parseExerciseArguments = (args: string[]): ExerciseValues => {
   return {
     value1: hours,
     value2: Number(args[2])
-  }
-}
+  };
+};
 
 try {
   const { value1, value2 } = parseExerciseArguments(process.argv);
   console.log(calculateExercises(value1, value2));
 } catch (error: unknown) {
-  let errorMessage = 'Something bad happened.'
+  let errorMessage = 'Something bad happened.';
   if (error instanceof Error) {
     errorMessage += ' Error: ' + error.message;
   }

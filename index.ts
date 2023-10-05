@@ -10,7 +10,7 @@ app.get('/bmi', (req, res) => {
   const { height, weight } = req.query;
 
   if (!height || !weight) {
-    res.status(400).json({ error: 'Height and weight are required.' });
+    res.status(400).json({ error: 'parameters missing' });
     return;
   }
 
