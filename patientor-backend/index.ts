@@ -54,6 +54,7 @@ const isString = (text: unknown): text is string => {
 };
 
 const validatePersonFields = (person: Record<string, unknown>): NewPatientEntry => {
+  // Check each field individually
   const validatedPerson: NewPatientEntry = {
     name: parseField(person.name),
     occupation: parseField(person.occupation),
