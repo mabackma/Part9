@@ -1,12 +1,25 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import diaryService from "./services/diaries"
+import Content from "./components/Content";
+import EntryForm from "./components/EntryForm"
+import { DiaryEntry } from "./types";
 
 const App = () => {
-  const [greeting, setGreeting] = useState<string>("hello world!");
-  
+  const [diaries, setDiaries] = useState<DiaryEntry[]>([]);
+
+  useEffect(() => {
+    const fetchDiaryList = async () => {
+      const diaries = await diaryService.getAll();
+      setDiaries(diaries);
+    };
+    void fetchDiaryList();
+    console.log("diaries:", diaries)
+  }, []);
+
   return (
     <div>
-      {greeting}
+      <EntryForm setDiaries={setDiaries}/>
+      <Content entries={diaries} />
     </div>
   );
 };
