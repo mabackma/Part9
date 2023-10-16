@@ -61,11 +61,20 @@ const EntryForm = ({ setDiaries }: EntryFormProps) => {
       <h3>Add new entry</h3>
       <p style={{ color: 'red' }}>{notification}</p>
       <form onSubmit={handleFormSubmit}>
-        date <input type="text" id="date" value={newEntry.date} onChange={handleInputChange} />
+        date <input type="date" id="date" value={newEntry.date} onChange={handleInputChange} />
         <br></br>
-        visibility <input type="text" id="visibility" value={newEntry.visibility} onChange={handleInputChange} />
+        visibility
+        great <input type="radio" id="visibility" name="visibility" value={Visibility.Great} checked={newEntry.visibility === Visibility.Great} onChange={handleInputChange} />
+        good <input type="radio" id="visibility" name="visibility" value={Visibility.Good} onChange={handleInputChange} />
+        ok <input type="radio" id="visibility" name="visibility" value={Visibility.Ok} onChange={handleInputChange} />
+        poor <input type="radio" id="visibility" name="visibility" value={Visibility.Poor} onChange={handleInputChange} />
         <br></br>
-        weather <input type="text" id="weather" value={newEntry.weather} onChange={handleInputChange} />
+        weather
+        sunny <input type="radio" id="weather" name="weather" value={Weather.Sunny} checked={newEntry.weather === Weather.Sunny} onChange={handleInputChange} />
+        cloudy <input type="radio" id="weather" name="weather" value={Weather.Cloudy} onChange={handleInputChange} />
+        rainy <input type="radio" id="weather" name="weather" value={Weather.Rainy} onChange={handleInputChange} />
+        windy <input type="radio" id="weather" name="weather" value={Weather.Windy} onChange={handleInputChange} />
+        stormy <input type="radio" id="weather" name="weather" value={Weather.Stormy} onChange={handleInputChange} />
         <br></br>
         comment <input type="text" id="comment" value={newEntry.comment} onChange={handleInputChange} />
         <br></br>
