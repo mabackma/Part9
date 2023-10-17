@@ -27,6 +27,13 @@ app.get('/api/patients', (_req, res) => {
   res.send(patients);
 });
 
+app.get('/api/patients/:id', (_req, res) => {
+  const { id } = _req.params;
+  console.log(`Fetching patient with ID: ${id}`);
+  const patient = patientService.getPatientEntry(id)
+  res.send(patient);
+});
+
 app.post('/api/patients', (req, res) => {
   try {
     const person = req.body as NewPatientEntry;
@@ -64,6 +71,7 @@ const validatePersonFields = (person: Record<string, unknown>): NewPatientEntry 
     gender: parseField(person.gender),
     ssn: parseField(person.ssn),
     dateOfBirth: parseField(person.dateOfBirth),
+    entries: [],
   };
 
   return validatedPerson;
