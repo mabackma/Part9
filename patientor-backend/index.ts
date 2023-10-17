@@ -1,7 +1,7 @@
 import express from 'express';
 import getDiagnosisEntries from './services/diagnoses';
 import patientService from './services/patients';
-import { NewPatientEntry } from './types';
+import { NewPatientEntry, Gender } from './types';
 import cors from 'cors';
 
 const app = express();
@@ -68,7 +68,7 @@ const validatePersonFields = (person: Record<string, unknown>): NewPatientEntry 
   const validatedPerson: NewPatientEntry = {
     name: parseField(person.name),
     occupation: parseField(person.occupation),
-    gender: parseField(person.gender),
+    gender: parseField(person.gender) as Gender,
     ssn: parseField(person.ssn),
     dateOfBirth: parseField(person.dateOfBirth),
     entries: [],
