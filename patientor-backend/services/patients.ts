@@ -17,10 +17,10 @@ const getPatientEntries = (): NonSensitivePatientEntry[] => {
 
 const getPatientEntry = (id: string): Patient | undefined => {
   const patient = patients.find(p => p.id === id);
-  /*
-  if(patient){
+  
+  if(patient && !patient.entries){
     patient.entries = [];
-  }*/
+  }
   return patient
 };
 
