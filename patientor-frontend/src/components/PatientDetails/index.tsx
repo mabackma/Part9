@@ -11,9 +11,11 @@ const PatientDetails = () => {
   const { id } = useParams();
 
   const fetchPatient = async () => {
-    const patient = await patientService.getPatient(id);
-    console.log(patient?.entries);
-    setPatient(patient)
+    if (id) {
+      const patient = await patientService.getPatient(id);
+      console.log(patient?.entries);
+      setPatient(patient);
+    }
   };
 
   const getDiagnoses = async () => {
