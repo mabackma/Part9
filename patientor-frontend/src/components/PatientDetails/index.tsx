@@ -10,7 +10,7 @@ const PatientDetails = () => {
 
   const fetchPatient = async () => {
     const patient = await patientService.getPatient(id);
-    console.log(patient);
+    console.log(patient?.entries);
     setPatient(patient)
   };
 
@@ -23,6 +23,31 @@ const PatientDetails = () => {
       <h2>{patient?.name} {`(${patient?.gender})`}</h2>
       <p>ssn: {patient?.ssn}</p>
       <p>Occupation: {patient?.occupation}</p>
+      <h2>entries</h2>
+      <div>
+        {patient?.entries.length !== 0 ? (
+          patient?.entries.map((entry, index) => (
+            <div key={index}>
+              <p>{entry.date} <i>{entry.description}</i></p>
+
+              <div>
+                {entry.diagnosisCodes?.length !== 0 ? (
+                    <ul>
+                      {entry.diagnosisCodes?.map((code, index2) => (
+                        <li key={index2}>{code}</li>
+                      ))}
+                    </ul>
+                ) : (
+                  <p>No diagnostic codes available</p>
+                )}
+              </div>
+
+            </div>
+          ))
+        ) : (
+          <p>No entries available</p>
+        )}
+      </div>
     </div>
   );
 };

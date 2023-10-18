@@ -5,20 +5,22 @@ import { v1 as uuid } from 'uuid'
 const patients: Patient[] = patientData as Patient[];
 
 const getPatientEntries = (): NonSensitivePatientEntry[] => {
-  return patients.map(({ id, name, occupation, gender, dateOfBirth }) => ({
+  return patients.map(({ id, name, occupation, gender, dateOfBirth, entries }) => ({
     id,
     name,
     occupation,
     gender,
     dateOfBirth,
+    entries,
   }));
 };
 
 const getPatientEntry = (id: string): Patient | undefined => {
   const patient = patients.find(p => p.id === id);
+  /*
   if(patient){
     patient.entries = [];
-  }
+  }*/
   return patient
 };
 
